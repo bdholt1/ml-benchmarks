@@ -10,11 +10,10 @@ def bench_skl(X, y, T, valid):
 #
     from scikits.learn import tree
     start = datetime.now()
-    clf = tree.DecisionTreeClassifier()
+    clf = tree.DecisionTreeClassifier(max_depth=100, min_split=1)
     clf.fit(X, y)
     score = np.mean(clf.predict(T) == valid)
     return score, datetime.now() - start
-
 
 def bench_milk(X, y, T, valid):
 #
@@ -22,7 +21,7 @@ def bench_milk(X, y, T, valid):
 #
     from milk.supervised import tree
     start = datetime.now()
-    learner = tree.tree_learner()
+    learner = tree.tree_learner(min_split=1)
     model = learner.train(X, y)
     pred = np.sign(map(model.apply, T))
     score = np.mean(pred == valid)
@@ -41,7 +40,7 @@ def bench_orange(X, y, T, valid):
     for i in range(0, X.shape[1]):
         columns.append("a" + str(i))
     [orange.EnumVariable(x) for x in columns]
-    classValues = ['0', '1']
+    classValues = ['-1', '1']
 
     domain = orange.Domain(map(orange.FloatVariable, columns),
                    orange.EnumVariable("class", values=classValues))
@@ -53,7 +52,7 @@ def bench_orange(X, y, T, valid):
     valid[np.where(valid < 0)] = 0 # change class labels to 0..K
     orng_test_data = orange.ExampleTable(domain, np.hstack((T, valid)))
 
-    learner = orange.C45Learner(orng_train_data)
+    learner = orange.TreeLearner(orng_train_data, maxDepth=100)
 
     pred = np.empty(T.shape[0], dtype=np.int32)
     for i, e in enumerate(orng_test_data):
@@ -81,10 +80,6 @@ if __name__ == '__main__':
 
     print 'Loading data ...'
     data = misc.load_data(dataset)
-
-    # set sigma to something useful
-    from milk.unsupervised import pdist
-    sigma = np.median(pdist(data[0]))
 
     print 'Done, %s samples with %s features loaded into ' \
       'memory' % data[0].shape
