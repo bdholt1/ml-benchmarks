@@ -108,16 +108,18 @@ if __name__ == '__main__':
       'memory' % data[0].shape
 
     score, res = misc.bench(bench_mdp, data)
-    misc.print_result("MDP", score, res) 
+    misc.print_result("pca", dataset, "MDP", score, res)
 
     score, res = misc.bench(bench_skl, data)
-    misc.print_result("scikits.learn", score, res)     
+    misc.print_result("pca", dataset, "scikits.learn", score, res)
 
     score, res = misc.bench(bench_pymvpa, data)
-    misc.print_result("PyMVPA", score, res)     
+    misc.print_result("pca", dataset, "PyMVPA", score, res)
 
     score, res = misc.bench(bench_pybrain, data)
-    misc.print_result("Pybrain", score, res)     
+    misc.print_result("pca", dataset, "Pybrain", score, res)
 
     score, res = misc.bench(bench_milk, data)
-    misc.print_result("milk", score, res) 
+    misc.print_result("pca", dataset, "milk", score, res)
+
+    misc.save_results()

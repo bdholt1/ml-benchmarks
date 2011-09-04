@@ -69,17 +69,17 @@ if __name__ == '__main__':
 
     print 'Loading data ...'
     data = misc.load_data(dataset)
+
     print 'Done, %s samples with %s features loaded into ' \
-          'memory' % data[0].shape
+      'memory\n' % data[0].shape
 
-    score, res_skl = misc.bench(bench_skl, data)
-    print 'scikits.learn: mean %s, std %s' % (res_skl.mean(), res_skl.std())
-    print 'MSE ', score
+    score, res = misc.bench(bench_skl, data)
+    misc.print_result("elasticnet", dataset, "scikits.learn", score, res) 
 
-    score, res_mlpy = misc.bench(bench_mlpy, data)
-    print 'MLPy: mean %s, std %s' % (res_mlpy.mean(), res_mlpy.std())
-    print 'MSE ', score
+    score, res = misc.bench(bench_mlpy, data)
+    misc.print_result("elasticnet", dataset, "MLPy", score, res)     
 
-    score, res_pymvpa = misc.bench(bench_pymvpa, data)
-    print 'PyMVPA: mean %s, std %s' % (res_pymvpa.mean(), res_pymvpa.std())
-    print 'MSE ', score
+    score, res = misc.bench(bench_pymvpa, data)
+    misc.print_result("elasticnet", dataset, "PyMVPA", score, res)      
+
+    misc.save_results()

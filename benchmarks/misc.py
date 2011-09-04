@@ -2,6 +2,7 @@
 import numpy as np
 import os
 
+
 def load_data(dataset):
 
     f = open(os.path.dirname(__file__) + '/data/%s_train.data' % dataset)
@@ -33,6 +34,7 @@ def load_data(dataset):
 def dtime_to_seconds(dtime):
     return dtime.seconds + (dtime.microseconds * 1e-6)
 
+
 def bench(func, data, n=10):
     """
     Benchmark a given function. The function is executed n times and
@@ -44,7 +46,8 @@ def bench(func, data, n=10):
     ----------
     func: function to benchmark
 
-    data: tuple (X, y, T, valid) containing training (X, y) and validation (T, valid) data.
+    data: tuple (X, y, T, valid) containing training (X, y)
+    and validation (T, valid) data.
 
     Returns
     -------
@@ -64,7 +67,6 @@ def bench(func, data, n=10):
         print '%s error in function %s: ' % (repr(detail), func)
         time = []
     return score, np.array(time)
-             
 
 task_string = ""
 dataset_string = ""
@@ -72,16 +74,17 @@ packages = []
 scores = []
 means = []
 stds = []
-                       
-def print_result(task, dataset, package, score, timing_results):        
+
+
+def print_result(task, dataset, package, score, timing_results):
     global task_string
     global dataset_string
     global packages
     global scores
     global means
-    global stds    
-    
-    print '%s on dataset %s' %(task, dataset)
+    global stds
+
+    print '%s on dataset %s' % (task, dataset)
     mean = np.mean(timing_results)
     std = np.std(timing_results)
     print '%s: mean %.2f, std %.2f' % (package, mean, std)
@@ -92,8 +95,9 @@ def print_result(task, dataset, package, score, timing_results):
     packages.append(package)
     scores.append(score)
     means.append(mean)
-    stds.append(std) 
-    
+    stds.append(std)
+
+
 def save_results():
     global task_string
     global dataset_string

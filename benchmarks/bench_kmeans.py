@@ -119,34 +119,24 @@ if __name__ == '__main__':
     data = misc.load_data(dataset)
 
     print 'Done, %s samples with %s features loaded into ' \
-      'memory' % data[0].shape
+      'memory\n' % data[0].shape
 
-    score, res_shogun = misc.bench(bench_shogun, data)
-    print 'Shogun: mean %.2f, std %.2f' % (
-        np.mean(res_shogun), np.std(res_shogun))
-    print 'Score: %2f\n' % score
+    score, res = misc.bench(bench_shogun, data)
+    misc.print_result("kmeans", dataset, "Shogun", score, res)
 
-    score, res_mdp = misc.bench(bench_mdp, data)
-    print 'MDP: mean %.2f, std %.2f' % (
-        np.mean(res_mdp), np.std(res_mdp))
-    print 'Score: %2f\n' % score
+    score, res = misc.bench(bench_mdp, data)
+    misc.print_result("kmeans", dataset, "MDP", score, res)
 
-    score, res_skl = misc.bench(bench_skl, data)
-    print 'scikits.learn: mean %.2f, std %.2f' % (
-        np.mean(res_skl), np.std(res_skl))
-    print 'Score: %2f\n' % score
+    score, res = misc.bench(bench_skl, data)
+    misc.print_result("kmeans", dataset, "scikits.learn", score, res)
 
-    score, res_mlpy = misc.bench(bench_mlpy, data)
-    print 'MLPy: mean %.2f, std %.2f' % (
-        np.mean(res_mlpy), np.std(res_mlpy))
-    print 'Score: %2f\n' % score
+    score, res = misc.bench(bench_mlpy, data)
+    misc.print_result("kmeans", dataset, "MLPy", score, res)
 
-    score, res_pybrain = misc.bench(bench_pybrain, data)
-    print 'Pybrain: mean %.2f, std %.2f' % (
-        np.mean(res_pybrain), np.std(res_pybrain))
-    print 'Score: %2f\n' % score
+    score, res = misc.bench(bench_pybrain, data)
+    misc.print_result("kmeans", dataset, "Pybrain", score, res)
 
-    score, res_milk = misc.bench(bench_milk, data)
-    print 'milk: mean %.2f, std %.2f' % (
-        np.mean(res_milk), np.std(res_milk))
-    print 'Score: %2f\n' % score
+    score, res = misc.bench(bench_milk, data)
+    misc.print_result("kmeans", dataset, "milk", score, res)
+
+    misc.save_results()

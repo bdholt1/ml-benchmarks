@@ -175,27 +175,27 @@ if __name__ == '__main__':
       'memory\n' % data[0].shape
 
     score, res = misc.bench(bench_shogun, data)
-    misc.print_result("svm", dataset, "Shogun", score, res)     
+    misc.print_result("svm", dataset, "Shogun", score, res)
 
     score, res = misc.bench(bench_mdp, data)
-    misc.print_result("svm", dataset, "MDP", score, res) 
+    misc.print_result("svm", dataset, "MDP", score, res)
 
     score, res = misc.bench(bench_skl, data)
-    misc.print_result("svm", dataset, "scikits.learn", score, res) 
+    misc.print_result("svm", dataset, "scikits.learn", score, res)
 
     score, res = misc.bench(bench_mlpy, data)
-    misc.print_result("svm", dataset, "MLPy", score, res)     
+    misc.print_result("svm", dataset, "MLPy", score, res)
 
     score, res = misc.bench(bench_pymvpa, data)
-    misc.print_result("svm", dataset, "PyMVPA", score, res)     
+    misc.print_result("svm", dataset, "PyMVPA", score, res)
 
     score, res = misc.bench(bench_pybrain, data)
-    misc.print_result("svm", dataset, "Pybrain", score, res)     
+    misc.print_result("svm", dataset, "Pybrain", score, res)
 
     score, res = misc.bench(bench_milk, data)
-    misc.print_result("svm", dataset, "milk", score, res) 
+    misc.print_result("svm", dataset, "milk", score, res)
 
     score, res = misc.bench(bench_orange, data)
-    misc.print_result("svm", dataset, "Orange", score, res)     
+    misc.print_result("svm", dataset, "Orange", score, res)
 
     misc.save_results()
