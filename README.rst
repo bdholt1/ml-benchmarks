@@ -5,16 +5,16 @@ Collection of benchmarks comparing various python-based machine
 learning packages.
 
 This is meant to work with the development version of the libraries
-scikits.learn, mlpy, pybrain, pymvpa, mdp and shogun. It might be hard
-to get all packages working on the same machine, but benchmarks are
-designed so that if something fail it will just print the exception
-and go to the next one.
+scikits.learn, mlpy, pybrain, pymvpa, mdp, shogun, milk and orange. It 
+might be hard to get all packages working on the same machine, but 
+benchmarks are designed so that if something fail it will just print 
+the exception and go to the next one.
 
 To execute a benchmark, just type from the prompt::
 
     $ python benchmarks/bench_$name.py
 
-and you will se as output the mean and std deviation for the timing of
+and you will see as output the mean and standard deviation for the timing of
 running the benchmark 10 times with its extreme values removed.
 
 Results
@@ -43,6 +43,7 @@ References
   - Shogun: http://www.shogun-toolbox.org/
   - PyBrain : http://pybrain.org/
   - Milk : http://luispedro.org/software/milk
+  - Orange : http://orange.biolab.si/
 
 
 Misc

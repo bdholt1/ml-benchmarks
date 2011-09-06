@@ -36,8 +36,9 @@ if __name__ == '__main__':
     data = misc.load_data(dataset)
 
     print 'Done, %s samples with %s features loaded into ' \
-      'memory' % data[0].shape
+      'memory\n' % data[0].shape
 
-    res_skl = misc.bench(bench_skl, data)
-    print 'MLPy: mean %.2f, std %.2f\n' % (
-        np.mean(res_skl), np.std(res_skl))
+    score, res = misc.bench(bench_skl, data)
+    misc.print_result("logistic", dataset, "scikits.learn", score, res)
+
+    misc.save_results()

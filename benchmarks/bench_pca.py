@@ -107,28 +107,19 @@ if __name__ == '__main__':
     print 'Done, %s samples with %s features loaded into ' \
       'memory' % data[0].shape
 
-    score, res_mdp = misc.bench(bench_mdp, data)
-    print 'MDP: mean %s, std %s' % (
-        np.mean(res_mdp), np.std(res_mdp))
-    print 'Explained variance: %s\n'% score
+    score, res = misc.bench(bench_mdp, data)
+    misc.print_result("pca", dataset, "MDP", score, res)
 
-    score, res_skl = misc.bench(bench_skl, data)
-    print 'scikits.learn: mean %.2f, std %.2f' % (
-        np.mean(res_skl), np.std(res_skl))
-    print 'Explained variance: %s\n'% score
+    score, res = misc.bench(bench_skl, data)
+    misc.print_result("pca", dataset, "scikits.learn", score, res)
 
-    score, res_pybrain = misc.bench(bench_pybrain, data)
-    print 'Pybrain: mean %s, std %s' % (
-        np.mean(res_pybrain), np.std(res_pybrain))
-    print 'Explained variance: %s\n'% score
+    score, res = misc.bench(bench_pymvpa, data)
+    misc.print_result("pca", dataset, "PyMVPA", score, res)
 
-    score, res_milk = misc.bench(bench_milk, data)
-    print 'milk: mean %s, std %s' % (
-        np.mean(res_milk), np.std(res_milk))
-    print 'Explained variance: %s\n'% score
+    score, res = misc.bench(bench_pybrain, data)
+    misc.print_result("pca", dataset, "Pybrain", score, res)
 
-    score, res_pymvpa = misc.bench(bench_pymvpa, data)
-    print 'PyMVPA: mean %s, std %s' % (
-        np.mean(res_pymvpa), np.std(res_pymvpa))
-    print 'Explained variance: %s\n'% score
+    score, res = misc.bench(bench_milk, data)
+    misc.print_result("pca", dataset, "milk", score, res)
 
+    misc.save_results()
